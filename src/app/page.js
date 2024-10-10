@@ -40,8 +40,8 @@ export default function Home() {
 				<input
 					onKeyPress={onKeyPress}
 					className={styles.input}
-					type='number'
-					placeholder='Digite o CPF'
+					type='text'
+					placeholder='Digite o registro'
 					value={cpf}
 					onChange={(evt) => setCpf(evt.target.value)}
 				/>
@@ -50,7 +50,6 @@ export default function Home() {
 						{msg.message}
 					</p>
 				)}
-				{/* {successMsg && <p className={styles.successMsg}>{successMsg}</p>} */}
 			</div>
 		</div>
 	);

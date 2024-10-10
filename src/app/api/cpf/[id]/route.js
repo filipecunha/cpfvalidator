@@ -3,31 +3,27 @@ import path from 'path';
 
 import { NextResponse } from 'next/server';
 
-import cpfs from '@/../cpfs.json';
+import registers from '@/../registers.json';
 
-const dataFilePath = path.join(process.cwd(), './cpfs.json');
+const dataFilePath = path.join(process.cwd(), './registers.json');
 
 export async function GET(request, context) {
 	const { params } = context;
 	const cpf = params.id;
 
-	// await fsPromises.writeFile(dataFilePath, '["123","456", "789"]');
-
-	if (cpfs.indexOf(cpf) >= 0) {
+	if (registers.indexOf(cpf) >= 0) {
 		return NextResponse.json({
-			message: `CPF ${cpf} Já cadastrado`,
+			message: `# ${cpf} Já cadastrado`,
 			insert: false,
 		});
 	} else {
-		cpfs.push(cpf);
+		registers.push(cpf);
 
-		await fsPromises.writeFile(dataFilePath, JSON.stringify(cpfs));
+		await fsPromises.writeFile(dataFilePath, JSON.stringify(registers));
 
 		return NextResponse.json({
-			message: `CPF ${cpf} cadastrado com sucesso!`,
+			message: `# ${cpf} cadastrado com sucesso!`,
 			insert: true,
 		});
 	}
-
-	return NextResponse.json(cpfs);
 }
